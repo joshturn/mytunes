@@ -10,6 +10,9 @@ var AudioView = Backbone.View.extend({
   events: {
     'ended': function() {
       this.model.ended();
+    },
+    'playing': function() {
+      this.model.playing();
     }
   },
 

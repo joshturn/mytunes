@@ -8,10 +8,20 @@ var PlayerView = Backbone.View.extend({
   initialize: function() {
     this.visualizerView = new VisualView({model: this.model.get('currentSong')});
     this.audioView = new AudioView({model: this.model.get('currentSong')});
+    this.model.on('change:currentSong', function(model){
+      this.setSong(model.get('currentSong'));
+    }, this);
+    this.model.on('change:isPlaying', function(model){
+      this.display();
+    }, this);
     this.render();
   },
 
   events: {
+  },
+
+  display: function(){
+    this.visualizerView.display();
   },
 
   setSong: function(song){
